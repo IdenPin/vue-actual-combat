@@ -1,0 +1,123 @@
+.school-detail {
+  .tab {
+    width: 100%;
+    background: #fff;
+    margin-top: px2rem(8);
+    position: relative;
+    display: flex;
+    border-bottom: 1px solid #e7e7e7;
+
+    .tab-item {
+      flex: 1;
+      height: px2rem(38);
+      line-height: px2rem(36);
+      box-sizing: border-box;
+      height: px2rem(38);
+      text-align: center;
+      font-size: px2rem(14);
+      text-align: center;
+
+      .v-active {
+        text-decoration: none;
+        border-bottom: px2rem(3) solid #29A1F7;
+        color: #29A1F7;
+      }
+
+      a {
+        display: block;
+        color: #000;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.university-base-info {
+  height: px2rem(120);
+  padding: px2rem(19) px2rem(12) px2rem(15);
+  background: #fff;
+  box-sizing: border-box;
+
+  .school-logo {
+    float: left;
+    box-sizing: border-box;
+    margin-right: px2rem(16);
+
+    img {
+      width: px2rem(80);
+      height: px2rem(80);
+      border-radius: 50%;
+    }
+  }
+
+  .school-info {
+    float: left;
+    width: 72%;
+    height: px2rem(80);
+    background: #fff;
+    // position: relative;
+    .university-name {
+      // position: absolute;
+      // left: px2rem(12px);
+      // top: px2rem(-4px);
+      margin-top: px2rem(5);
+      font-size: px2rem(18);
+      color: #000;
+    }
+
+    .university-level {
+      // position: absolute;
+      // left: px2rem(12px);
+      // top: px2rem(28px);
+      font-size: px2rem(13);
+      line-height: px2rem(18);
+      text-align: justify;
+      color: #8C8C8C;
+    }
+
+    .university-location {
+      // position: absolute;
+      // top: px2rem(65px);
+      // left: px2rem(12px);
+      font-size: px2rem(12);
+      color: #888;
+
+      .location {
+        .location-area {
+          position: relative;
+          top: 0;
+        }
+      }
+
+      .rank {
+        margin-left: px2rem(18);
+      }
+    }
+  }
+}
+//录取率
+
+.enroll-predict {
+  padding: 0 px2rem(11) 0 px2rem(13);
+  height: px2rem(42);
+  box-sizing: border-box;
+  background: #fff;
+
+  .enroll-predict-inner {
+    line-height: px2rem(40);
+    display: block;
+    color: $mainColor;
+    font-size: px2rem(14);
+    border-top: 1px solid #e7e7e7;
+    text-align: center;
+
+    a:hover,
+    a:link,
+    a:visited {
+      font-size: px2rem(14);
+      color: $mainColor;
+      text-decoration: none;
+      outline: 0;
+    }
+  }
+}
