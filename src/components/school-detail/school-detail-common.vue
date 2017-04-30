@@ -1,6 +1,5 @@
 <template lang="html">
   <div class="school-detail">
-    <div class="container-content">
       <div id="header-wrapper">
           <!-- 院校基础信息 -->
           <div class="university-base-info" id="school-base-info">
@@ -29,7 +28,6 @@
                 <a class="enroll-predict-inner" href="javascript:void(0)">录取率预测</a>
             </div>
       </div>
-    </div>
   </div>
 </template>
 

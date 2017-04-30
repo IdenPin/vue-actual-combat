@@ -23,7 +23,7 @@ export default {
 .open-professional {
     padding: px2rem(12);
     color: #333;
-    font-size: 12px;
+    font-size: px2rem(12);
     background: #fff;
     margin-bottom: $footerHeight;
     .open-professional-tab {
