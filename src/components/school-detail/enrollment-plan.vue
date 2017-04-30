@@ -52,7 +52,7 @@ export default {
 @import '../../assets/style/common.scss';
 .enrollment-plan {
     background: #fff;
-    padding: px2rem(10);
+    padding-top: px2rem(10);
     margin-bottom: $footerHeight;
     .select-plan {
         width: 200px;
@@ -71,7 +71,7 @@ export default {
     }
     .enroll-plan-table {
         margin: 0 auto;
-        border: 1px solid rgba(7,17,27,.1);
+        border: 1px solid #ecebeb;
         width: 100%;
         font-size: px2rem(12);
         thead {
@@ -87,7 +87,7 @@ export default {
         }
         tr {
             td {
-                border: 1px solid rgba(7,17,27,.1);
+                border: 1px solid #ecebeb;
                 text-align: center;
             }
         }
