@@ -1,6 +1,9 @@
 <template>
 <div id="app">
-  <transition name="bounce">
+  <!-- <transition name="bounce">
+    <router-view></router-view>
+  </transition> -->
+  <transition name="slide-fade">
     <router-view></router-view>
   </transition>
 </div>
@@ -18,7 +21,25 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.bounce-enter-active {
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+
+.slide-fade-leave-active {
+  /*transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);*/
+}
+
+.slide-fade-enter,
+.slide-fade-leave-active {
+  padding-left: 10px;
+  opacity: 0;
+}
+
+
+
+
+
+/*.bounce-enter-active {
   animation: bounce-in .5s;
 }
 
@@ -48,5 +69,5 @@ export default {
   100% {
     transform: scale(0);
   }
-}
+}*/
 </style>

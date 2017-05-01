@@ -54,6 +54,7 @@ export default {
     background: #fff;
     padding-top: px2rem(10);
     margin-bottom: $footerHeight;
+    padding-bottom: px2rem(20);
     .select-plan {
         width: 200px;
         display: flex;
