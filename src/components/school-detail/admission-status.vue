@@ -5,7 +5,7 @@
         院校录取信息
       </div>
       <div class="chart">
-        <IEcharts :option="line" :loading="loading" @ready="onReady" @click="onClick" @resize="resize"></IEcharts>
+        <IEcharts :option="line" :loading="line.loading" :resizable="true" @ready="onReady" @click="onClick"></IEcharts>
       </div>
     </div>
     <div class="major-admission">
@@ -48,8 +48,9 @@ export default {
   props: {},
   data: () => ({
     tableList: [],
-    loading: false,
+    screenWidth: document.body.clientWidth,
     line: {
+      loading: true,
       title: {
         text: ''
       },
@@ -166,25 +167,51 @@ export default {
     }
   }),
   mounted() {
+    const that = this;
+    window.onresize = () => {
+      return (() => {
+        that.screenWidth = document.body.clientWidth;
+      })();
+    };
     this.getSchoolAdmissionData();
     this.getMajorTableList();
   },
+  watch: {
+    screenWidth(val) {
+      if (!this.timer) {
+        this.screenWidth = val;
+        this.timer = true;
+        let that = this;
+        setTimeout(function() {
+          // that.screenWidth = that.$store.state.canvasWidth
+          console.log(that.screenWidth);
+          // that.getSchoolAdmissionData();
+          that.timer = false;
+        }, 400);
+      };
+    }
+  },
   methods: {
     onReady(instance) {
-      console.log(instance);
+      // console.log(instance);
     },
     onClick(event, instance, echarts) {
       console.log(arguments);
     },
     getSchoolAdmissionData() {
+      const that = this;
       $.get('http://s1.service.zhigaokao.cn/university/queryUniversityEnrollingChart.do?userKey=&universityId=1&majorType=1&batch=1&offset=0', (res) => {
         if (res.rtnCode === '0000000') {
           let dataList = res.bizData;
+          this.line.xAxis.data = [];
+          this.line.series[0].data = [];
+          this.line.series[1].data = [];
           for (let i in dataList) {
             this.line.xAxis.data.unshift(dataList[i].year);
             this.line.series[0].data.unshift(dataList[i].lowestScore);
             this.line.series[1].data.unshift(dataList[i].averageScore);
           }
+          that.line.loading = !that.line.loading;
         };
       });
     },
@@ -197,9 +224,6 @@ export default {
           }
         };
       });
-    },
-    resize() {
-
     }
   }
 };
