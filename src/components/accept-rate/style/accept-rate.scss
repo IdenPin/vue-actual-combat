@@ -71,6 +71,12 @@
       border-radius: px2rem(4);
       margin: px2rem(60) px2rem(12);
       cursor: pointer;
+
+      &.disabled {
+        background: lighten($mainColor, 25%);
+        color: darken(#fff,5%);
+        cursor: not-allowed;
+      }
     }
 
     .margin {
