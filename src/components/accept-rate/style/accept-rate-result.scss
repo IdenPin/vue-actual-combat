@@ -1,1 +1,92 @@
 @charset "utf-8";
+
+.accept-rate-result {
+  background: #fff;
+
+  .top-wrapper {
+    display: flex;
+    padding: px2rem(15) px2rem(12);
+    border-bottom: 1px solid #E7E7E7;
+    justify-content: center;
+    align-items: center;
+
+    .school-logo {
+      flex: 0 0 px2rem(100);
+
+      img {
+        width: px2rem(80);
+        height: px2rem(80);
+        border-radius: 50%;
+      }
+    }
+
+    .school-info {
+      flex: 1;
+      font-size: px2rem(14);
+    }
+  }
+
+  .middle-wrapper {
+    font-size: px2rem(14);
+    padding: px2rem(15) px2rem(12);
+    border-bottom: 1px solid #E7E7E7;
+
+    .title {
+      font-weight: 700;
+      margin: px2rem(5) 0 px2rem(2);
+    }
+
+    .text {
+      line-height: px2rem(20);
+    }
+
+    .subject-score {
+      span {
+        display: inline-block;
+
+        &:first-child {
+          margin-right: px2rem(25);
+        }
+      }
+    }
+  }
+
+  .bottom-wrapper {
+    font-size: px2rem(14);
+    padding-bottom: px2rem(40);
+
+    .title {
+      text-indent: px2rem(12);
+      font-weight: 700;
+      margin: px2rem(9) 0 px2rem(4);
+    }
+
+    table {
+      margin: 0 auto;
+      border: 1px solid #ecebeb;
+      width: 100%;
+      font-size: px2rem(12);
+
+      thead {
+        background-color: #108EE9;
+
+        th {
+          color: #fff;
+          padding: 1px 0;
+          font-weight: normal;
+
+          &:last-child {
+            border-right: 1px solid #108EE9;
+          }
+        }
+      }
+
+      tr {
+        td {
+          border: 1px solid #ecebeb;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

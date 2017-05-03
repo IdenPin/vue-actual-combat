@@ -28,8 +28,7 @@ export default {
 
 .slide-fade-enter,
 .slide-fade-leave-active {
-  padding-left: 1000px;
+  padding-left: 50px;
   opacity: 0;
 }
-
 </style>

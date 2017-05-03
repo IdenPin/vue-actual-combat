@@ -2,15 +2,16 @@
   <div class="accept-rate-result">
     <div class="top-wrapper">
       <div class="school-logo">
-        <img src="" alt="">
+        <img :src="acceptRateData.img">
       </div>
       <div class="school-info">
-        目标院校：{{acceptRateData.universityName}}
+        <p>目标院校：{{acceptRateData.universityName}}</p>
+        <p>目标批次：{{acceptRateData.batch | batchStr}}</p>
       </div>
     </div>
     <div class="middle-wrapper">
       <div class="subject-score">
-        <span>科类：{{params.type | subjectType}}</span>
+        <span>科类：{{params.type | subjectStr}}</span>
         <span>分数：{{acceptRateData.score}}</span>
       </div>
       <div class="title">
@@ -94,8 +95,27 @@ export default {
     console.info(this.params);
   },
   filters: {
-    subjectType(v) {
+    subjectStr(v) {
       return ['', '文科', '理科'][v];
+    },
+    batchStr(v) {
+      let foo;
+      switch (v + '') {
+        case '1':
+          foo = '本科一批次';
+          break;
+        case '2':
+          foo = '本科二批次';
+          break;
+        case '3':
+          foo = '本科三批次';
+          break;
+        case '4':
+        case '8':
+          foo = '高职专科批';
+          break;
+      }
+      return foo;
     }
   },
   components: {
