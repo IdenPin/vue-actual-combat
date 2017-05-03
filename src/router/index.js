@@ -5,6 +5,8 @@ import mainMenu from '@/components/main-menu/main-menu';
 import scoreAnalysis from '@/components/score-analysis/score-analysis';
 // 录取率预测
 import acceptRate from '@/components/accept-rate/accept-rate';
+import acceptRateResult from '@/components/accept-rate/accept-rate-result';
+
 // 院校信息列表
 import schoolList from '@/components/school-list/school-list';
 // 院校信息详情
@@ -32,6 +34,10 @@ export default new Router({
       path: '/acceptRate',
       name: 'acceptRate',
       component: acceptRate
+    }, {
+      path: '/acceptRateResult',
+      name: 'acceptRateResult',
+      component: acceptRateResult
     }, {
       path: '/schoolList',
       name: 'schoolList',

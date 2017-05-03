@@ -44,7 +44,9 @@
           <i class="icon icon-arrow-right"></i>
         </div>
       </div>
-      <div class="start-forecast-btn" :class="{'disabled':!isSubmit}" @click="acceptForcasted">开始预测</div>
+      <!-- :class="{'disabled':!isSubmit}" -->
+      <!-- <router-link class="start-forecast-btn" :disabled="judgeBtn()" :to="{name:'scoreAnalysis'}">开始预测</router-link> -->
+      <div class="start-forecast-btn" :disabled="judgeBtn()"  @click="acceptForcasted($event)">开始预测</div>
     </div>
     <div class="mask-wrapper" v-if="maskSchoolToggle">
       <div class="search-wrapper">
@@ -76,7 +78,7 @@
 <script>
 import stickyFooter from '../sticky-footer/sticky-footer';
 import $ from 'webpack-zepto';
-
+import store from 'store';
 export default {
   data() {
     return {
@@ -84,7 +86,6 @@ export default {
       maskBatchToggle: false,
       chooseTargetSchoolData: {},
       chooseTargetBatchData: {},
-      isSubmit: false,
       submitParams: {
         areaId: 610000,
         userId: 25331,
@@ -95,12 +96,21 @@ export default {
       }
     };
   },
-  mounted() {
-    if (this.submitParams.score !== '') {
-      this.isSubmit = true;
-    }
-  },
   methods: {
+    judgeBtn() {
+      if (this.submitParams.score !== '' &&
+        this.submitParams.batch !== '请选择批次' &&
+        this.submitParams.universityName !== '请选择目标院校' &&
+        parseInt(this.submitParams.score) < 800 &&
+        isNaN(this.submitParams.score) === false
+      ) {
+        // console.info('可点');
+        return false;
+      } else {
+        // console.info('不可点');
+        return true;
+      }
+    },
     maskSchoolControl() {
       this.maskSchoolToggle = !this.maskSchoolToggle;
     },
@@ -149,8 +159,11 @@ export default {
       this.submitParams.batch = $(event.target).attr('dictid') === null ? $(event.target).find('.batch-name').attr('dictid') : $(event.target).attr('dictid');
       this.maskBatchControl();
     },
-    acceptForcasted() {
-
+    acceptForcasted(event) {
+      if (!$(event.target).attr('disabled')) {
+        store.set('acceptRate', this.submitParams);
+        this.$router.push('/acceptRateResult');
+      }
     }
   },
   filters: {
