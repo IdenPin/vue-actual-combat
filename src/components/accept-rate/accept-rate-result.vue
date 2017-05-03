@@ -5,19 +5,19 @@
         <img src="" alt="">
       </div>
       <div class="school-info">
-
+        目标院校：{{acceptRateData.universityName}}
       </div>
     </div>
     <div class="middle-wrapper">
       <div class="subject-score">
-        <span>科类：理科</span>
-        <span>分数：690</span>
+        <span>科类：{{params.type | subjectType}}</span>
+        <span>分数：{{acceptRateData.score}}</span>
       </div>
       <div class="title">
         测试结果
       </div>
       <div class="text">
-        您报考这所院校十拿九稳，可以选择更高的目标了！
+        录取率98%，您报考这所院校十拿九稳，可以选择更高的目标了！
       </div>
     </div>
     <div class="bottom-wrapper">
@@ -35,7 +35,15 @@
                         <th>平均分</th>
                     </tr>
                 </thead>
-                <tbody id="result-table-list"><tr><td>2016</td><td>一批本科</td><td>-</td><td>593</td><td>-</td></tr><tr><td>2015</td><td>一批本科</td><td>1062</td><td>582</td><td>593</td></tr><tr><td>2014</td><td>一批本科</td><td>1134</td><td>599</td><td>609</td></tr></tbody>
+                <tbody>
+                  <tr v-for="(v,index) in acceptRateData.historyList">
+                    <td>{{v.year}}</td>
+                    <td>{{v.batch}}</td>
+                    <td>{{v.enrollingNumber}}</td>
+                    <td>{{v.minScore}}</td>
+                    <td>{{v.avgScore}}</td>
+                  </tr>
+                </tbody>
             </table>
       </div>
     </div>
@@ -84,6 +92,11 @@ export default {
       }
     });
     console.info(this.params);
+  },
+  filters: {
+    subjectType(v) {
+      return ['', '文科', '理科'][v];
+    }
   },
   components: {
     stickyFooter
