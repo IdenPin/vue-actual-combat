@@ -1,89 +1,136 @@
-.university-list {
-  margin-top: px2rem(2);
+.school-list {
+  .university-list {
+    margin-top: px2rem(48);
+    li {
+      height: px2rem(93);
+      padding: px2rem(13) px2rem(14);
+      background: #fff;
+      box-sizing: border-box;
+      margin-top: px2rem(5);
 
-  li {
-    height: px2rem(93);
-    padding: px2rem(13) px2rem(14);
-    background: #fff;
-    box-sizing: border-box;
-    margin-top: px2rem(5);
+      .school-logo {
+        width: px2rem(64);
+        height: px2rem(66);
+        float: left;
 
-    .school-logo {
-      width: px2rem(64);
-      height: px2rem(66);
-      float: left;
+        img {
+          width: px2rem(63);
+          height: px2rem(63);
+        }
+      }
 
-      img {
-        width: px2rem(63);
-        height: px2rem(63);
+      .school-info {
+        float: left;
+        width: 81%;
+        height: px2rem(66);
+        background: #fff;
+        position: relative;
+
+        .university-name {
+          position: absolute;
+          left: px2rem(12);
+          top: 0;
+          font-size: px2rem(16);
+          color: #000;
+        }
+
+        .university-level {
+          position: absolute;
+          top: px2rem(20);
+          left: px2rem(12);
+
+          span {
+            display: inline-block;
+            padding: 1px px2rem(2);
+            line-height: px2rem(12);
+            padding-top: px2rem(2);
+            text-align: center;
+            border: 1px solid #108EE9;
+            border-radius: px2rem(2);
+            color: #108EE9;
+            font-size: px2rem(8);
+            margin-right: px2rem(4);
+          }
+          // 使用@for配合map-get取值
+          $parmas-colors: ( 1: 0.9, 2: 0.7, 3: 0.6, 4: 0.5, 5: 0.4, 6: 0.2 );
+          @for $i from 1 to 10 {
+            span:nth-of-type(#{$i}) {
+              opacity: map-get($parmas-colors,$i);
+            }
+          }
+        }
+
+        .university-location {
+          position: absolute;
+          top: px2rem(45);
+          left: px2rem(10);
+          font-size: px2rem(12);
+          color: #888888;
+
+          i.icon {
+            font-size: px2rem(16);
+          }
+
+          .location {
+            .location-area {
+              position: relative;
+              top: 0;
+            }
+          }
+
+          .rank {
+            margin-left: px2rem(18);
+          }
+        }
       }
     }
 
-    .school-info {
-      float: left;
-      width: 81%;
-      height: px2rem(66);
-      background: #fff;
-      position: relative;
-
-      .university-name {
-        position: absolute;
-        left: px2rem(12);
-        top: 0;
-        font-size: px2rem(16);
-        color: #000;
-      }
-
-      .university-level {
-        position: absolute;
-        top: px2rem(20);
-        left: px2rem(12);
-
-        span {
-          display: inline-block;
-          padding: 1px px2rem(2);
-          line-height: px2rem(12);
-          padding-top: px2rem(2);
-          text-align: center;
-          border: 1px solid #108EE9;
-          border-radius: px2rem(2);
-          color: #108EE9;
-          font-size: px2rem(8);
-          margin-right: px2rem(4);
-        }
-        // 使用@for配合map-get取值
-        $parmas-colors: ( 1: 0.9, 2: 0.7, 3: 0.6, 4: 0.5, 5: 0.4, 6: 0.2 );
-        @for $i from 1 to 10 {
-          span:nth-of-type(#{$i}) {
-            opacity: map-get($parmas-colors,$i);
-          }
-        }
-      }
-
-      .university-location {
-        position: absolute;
-        top: px2rem(45);
-        left: px2rem(10);
-        font-size: px2rem(12);
-        color: #888888;
-        i.icon{
-          font-size: px2rem(16);
-        }
-        .location {
-          .location-area {
-            position: relative;
-            top: 0;
-          }
-        }
-
-        .rank {
-          margin-left: px2rem(18);
-        }
-      }
+    li:nth-child(1) {
+      margin-top: 0;
     }
   }
+  margin-bottom: $footerHeight;
 
-  li:nth-child(1) {
-    margin-top: 0;
+  .v-spinner {
+    text-align: center;
+    margin-top: px2rem(10);
+  }
+
+  .select-condition {
+    position: fixed;
+    width: 100%;
+    top:0;
+    left:0;
+    background: #fff;
+    z-index: 99;
+    border-bottom: px2rem(2) solid $bgGrey;
+    ul {
+      font-size: px2rem(14);
+      display: flex;
+      padding: px2rem(8) px2rem(10);
+      color: $mainColor;
+      li {
+        height: px2rem(28);
+        line-height: px2rem(28);
+        display: block;
+        flex: 1;
+        border: 1px solid $mainColor;
+        text-align: center;
+        margin-right: px2rem(10);
+        border-radius: px2rem(4);
+        &:first-child{
+          border: none;
+          flex: 0 0 auto;
+          .icon-search-input{
+            font-weight: bold;
+            font-size: px2rem(24);
+            vertical-align: middle;
+          }
+        }
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+    }
   }
 }

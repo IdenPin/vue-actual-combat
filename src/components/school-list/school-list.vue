@@ -1,6 +1,14 @@
 <template lang="html">
   <div class="school-list">
-    <!-- <top-header header-title="院校信息" :fix-head="true"></top-header> -->
+    <div class="select-condition">
+      <ul>
+        <li><i class="icon icon-search-input"></i></li>
+        <li>院校属地</li>
+        <li>院校分类</li>
+        <li>学历层次</li>
+        <li>院校特征</li>
+      </ul>
+    </div>
     <div class="container-content">
       <ul class="university-list">
         <li v-for="i in schooListData">
@@ -27,7 +35,6 @@
           </router-link>
         </li>
       </ul>
-      <!-- <mt-spinner color="#108EE9" v-show="scroll" style="text-align:center" type="triple-bounce"></mt-spinner> -->
     </div>
     <pulseLoader :loading="spinner.loading" :color="spinner.color" :size="spinner.size"></pulseLoader>
     <stickyFooter></stickyFooter>
@@ -55,7 +62,7 @@ export default {
         rows: 10
       },
       spinner: {
-        size: '12px',
+        size: '14px',
         loading: true,
         color: '#108EE9'
       }
@@ -109,11 +116,4 @@ export default {
 <style lang="scss">
 @import "../../assets/style/common.scss";
 @import "school-list";
-.school-list {
-    margin-bottom: $footerHeight;
-    .v-spinner {
-        text-align: center;
-        margin-top: px2rem(15);
-    }
-}
 </style>
