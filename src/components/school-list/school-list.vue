@@ -43,7 +43,7 @@
 
 <script>
 import $ from 'webpack-zepto';
-import LS from 'store';
+import store from 'store';
 import utils from '../../libs/utils';
 import pulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import stickyFooter from '../sticky-footer/sticky-footer';
@@ -69,15 +69,37 @@ export default {
     };
   },
   mounted() {
-    if (LS.get('cache_scrollTop')) {
-      this.schooListData = LS.get('cache_schooListData');
-      this.searchKey = LS.get('cache_searchKey');
-      this.$nextTick(() => $(window).scrollTop(LS.get('cache_scrollTop')));
+    if (store.get('cache_scrollTop')) {
+      this.schooListData = store.get('cache_schooListData');
+      this.searchKey = store.get('cache_searchKey');
+      this.$nextTick(() => $(window).scrollTop(store.get('cache_scrollTop')));
     } else {
       this.getSchoolList();
     }
     // 滚动加载
     $(window).on('scroll', utils.throttle(this.getScrollData, 500));
+  },
+  beforeRouteEnter(to, from, next) {
+    // ===================== beforeRouteEnter 最先执行（1）
+    if (from.name !== 'schoolIntro') {
+      // 页面切换移除之前记录的数据集
+      if (store.get('cache_scrollTop')) {
+        store.remove('cache_scrollTop');
+        store.remove('cache_schooListData');
+        store.remove('cache_searchKey');
+      }
+    }
+    next();
+  },
+  beforeRouteLeave(to, from, next) {
+    // ===================== beforeRouteLeave 最后执行（3）
+    if (to.name === 'schoolDetail') {
+      store.set('cache_scrollTop', $(window).scrollTop());
+      store.set('cache_schooListData', this.schooListData);
+      store.set('cache_searchKey', this.searchKey);
+    }
+    $(window).off('scroll');
+    next();
   },
   methods: {
     getSchoolList() {
@@ -85,13 +107,20 @@ export default {
       var _this = this;
       $.get('http://s1.service.zhigaokao.cn/university/getRemoteUniversityList.do?' + params, (d) => {
         this.scroll = true;
-        if (d.rtnCode === '0000000') {
-          if (d.bizData.universityList.length === 0) {
+        let {
+          rtnCode,
+          bizData: {
+            universityList
+          }
+        } = d;
+        if (rtnCode === '0000000') {
+          let {
+            length: Len
+          } = universityList;
+          if (Len === 0) {
             this.scroll = false;
           }
-          d.bizData.universityList.forEach(function(v) {
-            _this.schooListData.push(v);
-          });
+          universityList.forEach(v => _this.schooListData.push(v));
         }
       });
     },
